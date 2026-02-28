@@ -22,7 +22,9 @@ public class PrDiffService {
             String patch = prFileDetail.getPatch();
 
             if (patch.getBytes(UTF_8).length > maxPatchSize)
-                StringSplitter.splitByBytes(patch, maxPatchSize, UTF_8);
+                for (String chunk : StringSplitter.splitByBytes(patch, maxPatchSize, UTF_8)) {
+                    prDiffChunks.add(new PrDiffChunk(prFileDetail.getFilename(), chunk));
+                }
             else
                 prDiffChunks.add(new PrDiffChunk(prFileDetail.getFilename(), patch));
         }
