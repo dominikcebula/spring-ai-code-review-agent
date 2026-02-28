@@ -1,4 +1,4 @@
-package com.dominikcebula.spring.ai.agent.code.review.pullrequest;
+package com.dominikcebula.spring.ai.agent.code.review.pullrequest.metadata;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

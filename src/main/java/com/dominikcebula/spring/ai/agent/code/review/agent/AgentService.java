@@ -6,7 +6,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
-import static com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrDiffChunkReviewSchema.EXTRACTION_CONVERTER;
+import static com.dominikcebula.spring.ai.agent.code.review.pullrequest.review.PrReviewSchema.EXTRACTION_CONVERTER;
 
 @Service
 public class AgentService {

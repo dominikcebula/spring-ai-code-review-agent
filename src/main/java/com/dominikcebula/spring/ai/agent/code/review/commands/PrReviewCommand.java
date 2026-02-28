@@ -1,8 +1,8 @@
 package com.dominikcebula.spring.ai.agent.code.review.commands;
 
-import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrData;
-import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrLinkParser;
-import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrReviewService;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.metadata.PrData;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.metadata.PrLinkParser;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.review.PrReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

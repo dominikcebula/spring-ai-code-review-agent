@@ -1,5 +1,7 @@
 package com.dominikcebula.spring.ai.agent.code.review.pullrequest;
 
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.metadata.PrData;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.metadata.PrLinkParser;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

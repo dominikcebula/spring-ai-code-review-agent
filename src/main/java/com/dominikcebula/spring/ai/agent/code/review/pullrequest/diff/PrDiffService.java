@@ -1,4 +1,4 @@
-package com.dominikcebula.spring.ai.agent.code.review.pullrequest;
+package com.dominikcebula.spring.ai.agent.code.review.pullrequest.diff;
 
 import com.dominikcebula.spring.ai.agent.code.review.utils.StringSplitter;
 import org.kohsuke.github.GHPullRequest;

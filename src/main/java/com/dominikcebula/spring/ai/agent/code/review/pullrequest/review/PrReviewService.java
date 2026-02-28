@@ -1,6 +1,8 @@
-package com.dominikcebula.spring.ai.agent.code.review.pullrequest;
+package com.dominikcebula.spring.ai.agent.code.review.pullrequest.review;
 
 import com.dominikcebula.spring.ai.agent.code.review.agent.AgentService;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.diff.PrDiffChunk;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.diff.PrDiffService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GHPullRequest;
