@@ -1,4 +1,4 @@
-package com.dominikcebula.spring.ai.agent.code.review.cli.commands;
+package com.dominikcebula.spring.ai.agent.code.review.commands;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

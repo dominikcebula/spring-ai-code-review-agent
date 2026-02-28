@@ -1,6 +1,6 @@
 package com.dominikcebula.spring.ai.agent.code.review;
 
-import com.dominikcebula.spring.ai.agent.code.review.cli.commands.PrReviewCommand;
+import com.dominikcebula.spring.ai.agent.code.review.commands.PrReviewCommand;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.stereotype.Component;
