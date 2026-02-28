@@ -1,10 +1,8 @@
 package com.dominikcebula.spring.ai.agent.code.review.commands;
 
-import com.dominikcebula.spring.ai.agent.code.review.agent.AgentService;
 import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrData;
-import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrDiffChunk;
-import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrDiffService;
 import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrLinkParser;
+import com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Component;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-import java.util.List;
-
 @Component
 @Command(name = "pr-review", mixinStandardHelpOptions = true)
 @Slf4j
@@ -25,8 +21,7 @@ public class PrReviewCommand implements Runnable {
     @Option(names = "-pr-link", description = "PR Link", required = true)
     private String prLink;
 
-    private final AgentService agentService;
-    private final PrDiffService prDiffService;
+    private final PrReviewService prReviewService;
 
     @SneakyThrows
     @Override
@@ -43,16 +38,8 @@ public class PrReviewCommand implements Runnable {
                 .getRepository(prData.repository()).getPullRequest(prData.pullRequestNumber());
         log.info("Pull request found: {}", pullRequest);
 
-        log.info("Fetching pull request diff...");
-        List<PrDiffChunk> prDiffChunks = prDiffService.getPrDiffChunks(pullRequest);
-        log.info("Pull request diff found");
-
         log.info("Reviewing pull request...");
-        for (int i = 0; i < prDiffChunks.size(); i++) {
-            PrDiffChunk prDiffChunk = prDiffChunks.get(i);
-            log.info("Reviewing diff chunk [{}/{}]", i + 1, prDiffChunks.size());
-            String feedback = agentService.reviewPr(prDiffChunk.patch());
-            System.out.println(feedback);
-        }
+        prReviewService.review(pullRequest);
+        log.info("Pull request reviewed");
     }
 }

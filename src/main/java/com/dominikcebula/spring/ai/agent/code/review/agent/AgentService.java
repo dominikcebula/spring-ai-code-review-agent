@@ -1,9 +1,12 @@
 package com.dominikcebula.spring.ai.agent.code.review.agent;
 
 import com.dominikcebula.spring.ai.agent.code.review.utils.ResourceReader;
+import lombok.NonNull;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+
+import static com.dominikcebula.spring.ai.agent.code.review.pullrequest.PrDiffChunkReviewSchema.EXTRACTION_CONVERTER;
 
 @Service
 public class AgentService {
@@ -11,10 +14,14 @@ public class AgentService {
 
     public AgentService(ChatClient.Builder chatClientBuilder, ResourceLoader resourceLoader) {
         this.chatClient = chatClientBuilder
-                .defaultSystem(ResourceReader.asString(
-                        resourceLoader.getResource("classpath:agent.md")
-                ))
+                .defaultSystem(getSystemPrompt(resourceLoader))
                 .build();
+    }
+
+    private static @NonNull String getSystemPrompt(ResourceLoader resourceLoader) {
+        String agentDefinition = ResourceReader.asString(resourceLoader.getResource("classpath:agent.md"));
+        agentDefinition = agentDefinition.replace("{{RESPONSE_SCHEMA}}", EXTRACTION_CONVERTER.getJsonSchema());
+        return agentDefinition;
     }
 
     public String reviewPr(String prDiff) {
