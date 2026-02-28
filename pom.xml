@@ -70,8 +70,6 @@
     </dependencyManagement>
 
     <build>
-        <finalName>spring-ai-code-review-agent</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
