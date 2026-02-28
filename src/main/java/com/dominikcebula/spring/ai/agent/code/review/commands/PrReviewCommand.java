@@ -32,9 +32,20 @@ public class PrReviewCommand implements Runnable {
         GHPullRequest pullRequest = github.getUser(prData.organization())
                 .getRepository(prData.repository()).getPullRequest(prData.pullRequestNumber());
 
+        String prDiff = getPrDiff(pullRequest);
+        System.out.println(prDiff);
+    }
+
+    private String getPrDiff(GHPullRequest pullRequest) {
+        StringBuilder sb = new StringBuilder();
         for (GHPullRequestFileDetail prFileDetail : pullRequest.listFiles()) {
-            System.out.println(prFileDetail.getFilename());
-            System.out.println(prFileDetail.getPatch());
+            sb.append("-----\n");
+            sb.append(">>> filename: ");
+            sb.append(prFileDetail.getFilename());
+            sb.append("\n");
+            sb.append(prFileDetail.getPatch());
+            sb.append("\n");
         }
+        return sb.toString();
     }
 }
