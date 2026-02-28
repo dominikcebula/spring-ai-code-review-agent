@@ -29,6 +29,8 @@ public class PrCommentUploadService {
                     .lines(prComment.startLine(), prComment.endLine())
                     .body(
                             """
+                                    🤖 AI Agent Code Review Comment
+                                    
                                     Priority: %s
                                     Category: %s
                                     
